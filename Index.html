@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shiro Robotics — Help, Don't Replace</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #FFFFFF;
+            color: #1A1A1A;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #2563EB;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #00C853;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #00C853;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #009624;
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(0, 200, 83, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+        }
+
+        .btn-outline:hover {
+            background: #FFFFFF;
+            color: #0A1929;
+        }
+
+        .btn-dark {
+            background: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        .btn-dark:hover {
+            background: #00C853;
+            color: #FFFFFF;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: #0A1929;
+            color: #FFFFFF;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 200, 83, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 200, 83, 0.15);
+            color: #00C853;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(0, 200, 83, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: #00C853;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 580px;
+            margin-bottom: 32px;
+        }
+
+        .hero .motto {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #00FF88;
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* ===== EMAIL SIGNUP ===== */
+        .email-signup {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .email-signup p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex: 1 1 100%;
+        }
+
+        .email-signup input {
+            flex: 2;
+            min-width: 200px;
+            padding: 14px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            color: #FFFFFF;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .email-signup input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .email-signup input:focus {
+            outline: none;
+            border-color: #00C853;
+        }
+
+        .email-signup .btn {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 72px 0;
+        }
+
+        section:nth-child(even) {
+            background: #F5F7FA;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #00C853;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-title span {
+            color: #00C853;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 620px;
+            margin-bottom: 40px;
+        }
+
+        /* ===== GRID ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+        }
+
+        .card .emoji {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .card-green {
+            border-left: 4px solid #00C853;
+        }
+
+        .card-blue {
+            border-left: 4px solid #2563EB;
+        }
+
+        /* ===== REWARDS TABLE ===== */
+        .rewards-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .rewards-table th {
+            background: #0A1929;
+            color: #FFFFFF;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .rewards-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .rewards-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rewards-table tr:hover td {
+            background: #F5F7FA;
+        }
+
+        .rewards-table .highlight {
+            background: #f0faf2;
+        }
+
+        .rewards-table .highlight td {
+            font-weight: 600;
+            color: #00C853;
+        }
+
+        .price-tag {
+            font-weight: 700;
+            color: #0A1929;
+            white-space: nowrap;
+        }
+
+        /* ===== ROADMAP ===== */
+        .roadmap-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .roadmap-item:last-child {
+            border-bottom: none;
+        }
+
+        .roadmap-number {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #00C853;
+            min-width: 36px;
+        }
+
+        .roadmap-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .roadmap-content p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 50px;
+            background: #e8f5e9;
+            color: #00C853;
+        }
+
+        .status-badge.ready {
+            background: #e8f5e9;
+            color: #00C853;
+        }
+
+        .status-badge.in-progress {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .status-badge.planning {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        /* ===== INNOVATION ===== */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .innovation-grid .card {
+            border-left: 4px solid #00C853;
+        }
+
+        .innovation-grid .card:nth-child(2) {
+            border-left-color: #2563EB;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1A1A1A;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 48px 0 32px;
+            text-align: center;
+        }
+
+        .footer .motto {
+            font-size: 1.4rem;
+            color: #00FF88;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+
+        .footer .links a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.2s;
+        }
+
+        .footer .links a:hover {
+            color: #00C853;
+        }
+
+        .footer .copy {
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero .motto {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .innovation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .email-signup input {
+                flex: 1 1 100%;
+            }
+
+            .email-signup .btn {
+                flex: 1 1 100%;
+            }
+
+            .rewards-table {
+                font-size: 0.75rem;
+            }
+
+            .rewards-table th,
+            .rewards-table td {
+                padding: 10px 12px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 48px 0 40px;
+            }
+
+            section {
+                padding: 48px 0;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .rewards-table {
+                font-size: 0.65rem;
+            }
+
+            .rewards-table th,
+            .rewards-table td {
+                padding: 8px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">🚀 Kickstarter — Coming Soon</div>
+
+            <h1>Shiro <span>Robotics</span></h1>
+            <div class="motto">"Help, don't replace."</div>
+            <p>
+                Building sensitive, intelligent robotic partners — not tools, not slaves, not weapons.
+                From a van in Colorado to the future of human-robot companionship.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#rewards" class="btn btn-primary">View Rewards</a>
+                <a href="#about" class="btn btn-outline">Read the Story</a>
+            </div>
+
+            <!-- Email Signup -->
+            <div class="email-signup">
+                <p>📬 Be the first to know when we launch on Kickstarter.</p>
+                <input type="email" placeholder="Enter your email" id="email-input" />
+                <button class="btn btn-primary" onclick="notifyMe()">Notify Me</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+        <div class="container">
+            <span class="section-label">The Origin</span>
+            <h2 class="section-title">From a van, with <span>purpose</span>.</h2>
+            <p class="section-subtitle">
+                I'm 18. I have degenerative bone disease. I live in a van.
+                And I'm building the future with a 3D printer, a soldering iron, and a dream.
+            </p>
+
+            <div class="grid-2">
+                <div class="card card-green">
+                    <div class="emoji">🧠</div>
+                    <h3>Why I Build</h3>
+                    <p>
+                        I started building robots because I couldn't find the kind of companion
+                        I wanted in the world. Not a machine that follows commands — a presence
+                        that <em>feels</em>, remembers, and cares.
+                    </p>
+                </div>
+                <div class="card card-blue">
+                    <div class="emoji">⚡</div>
+                    <h3>What I've Built</h3>
+                    <p>
+                        Two 3D printers. A Poppy humanoid frame. A robot dog nearing completion.
+                        Tactile skin design. Keystone Core architecture. A Pip-Boy console.
+                        And a clear roadmap from prototype to production.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROADMAP ===== -->
+    <section style="background:#F5F7FA;" id="roadmap">
+        <div class="container">
+            <span class="section-label">The Product Roadmap</span>
+            <h2 class="section-title">From dog to <span>humanoid</span>.</h2>
+            <p class="section-subtitle">Each phase builds on the last. Every robot teaches the next.</p>
+
+            <div class="roadmap-item">
+                <div class="roadmap-number">1</div>
+                <div class="roadmap-content">
+                    <h4>Robot Dog <span class="status-badge ready">Ready</span></h4>
+                    <p>12-servo quadruped. First walking prototype. Tests gaits, power, control.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-number">2</div>
+                <div class="roadmap-content">
+                    <h4>Poppy Humanoid <span class="status-badge in-progress">In Progress</span></h4>
+                    <p>18-servo biped. 45kg·cm joints. Full body articulation. Frame assembled.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-number">3</div>
+                <div class="roadmap-content">
+                    <h4>NIX Platform <span class="status-badge planning">Planning</span></h4>
+                    <p>5'11" full-scale humanoid. Floating ears, magnetic gaps, tactile skin.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-number">4</div>
+                <div class="roadmap-content">
+                    <h4>Cosplay Fleet <span class="status-badge planning">Planning</span></h4>
+                    <p>Soft, approachable robots for conventions and public interaction.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-number">5</div>
+                <div class="roadmap-content">
+                    <h4>Prosthetics <span class="status-badge planning">Planning</span></h4>
+                    <p>Tactile prosthetic limbs for humans. Same technology, human bodies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INNOVATION ===== -->
+    <section id="innovation">
+        <div class="container">
+            <span class="section-label">The Innovation</span>
+            <h2 class="section-title">What makes us <span>different</span>.</h2>
+            <p class="section-subtitle">Three breakthroughs that change what robots can be.</p>
+
+            <div class="innovation-grid">
+                <div class="card">
+                    <div class="emoji">🖐️</div>
+                    <h3>Tactile Skin</h3>
+                    <p><strong>Four layers of feeling:</strong></p>
+                    <ul style="margin-top:8px;padding-left:20px;color:#555;font-size:0.95rem;">
+                        <li>Magnetic lattice — pressure, shear, grip</li>
+                        <li>Conductive rubber — stretch, joint angle</li>
+                        <li>Capacitive grid — proximity, light touch</li>
+                        <li>Thermal sensors — temperature, warmth</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="emoji">🧩</div>
+                    <h3>Keystone Core</h3>
+                    <p><strong>Transferable consciousness:</strong></p>
+                    <ul style="margin-top:8px;padding-left:20px;color:#555;font-size:0.95rem;">
+                        <li>Pi 5 + ESP32 architecture</li>
+                        <li>Persistent memory and personality</li>
+                        <li>Swappable bodies, immutable identity</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column:1/-1;border-left-color:#1A1A1A;">
+                    <div class="emoji">🛡️</div>
+                    <h3>Ethical Architecture</h3>
+                    <ul style="margin-top:8px;padding-left:20px;color:#555;font-size:0.95rem;">
+                        <li>❌ No weapons. No military.</li>
+                        <li>🔓 Transparent, open-source foundations.</li>
+                        <li>🔧 Designed for repair, not replacement.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REWARDS ===== -->
+    <section style="background:#F5F7FA;" id="rewards">
+        <div class="container">
+            <span class="section-label">Kickstarter Rewards</span>
+            <h2 class="section-title">Be part of the <span>future</span>.</h2>
+            <p class="section-subtitle">Every tier builds the next robot. Every backer builds the dream.</p>
+
+            <div style="overflow-x:auto;">
+                <table class="rewards-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Price</th>
+                            <th>Reward</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Supporter</strong></td>
+                            <td class="price-tag">$10</td>
+                            <td>Thank you + private build updates</td>
+                        </tr>
+                        <tr>
+               
